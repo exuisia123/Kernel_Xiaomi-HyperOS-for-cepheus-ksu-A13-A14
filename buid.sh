@@ -9,6 +9,7 @@ export CLANG_PATH=~/prelude-clang
 export PATH=${CLANG_PATH}/bin:${PATH}
 export CLANG_TRIPLE=aarch64-linux-gnu-
 export CROSS_COMPILE=aarch64-linux-androidkernel-
+export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
 export CLANG_PREBUILT_BIN=${CLANG_PATH}/bin
 export CC="ccache clang"
 export CXX="ccache clang++"
