@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=M9-Kernel
+kernel.string=Xiaomi HyperOS for cepheus-Kernel
 do.devicecheck=0
 do.modules=0
 do.systemless=0
