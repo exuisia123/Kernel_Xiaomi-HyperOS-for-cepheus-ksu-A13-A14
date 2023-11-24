@@ -1,27 +1,12 @@
-name: "Build kernels"
-
-env:
-  OUT_DIR: "${{ github.workspace }}/out"
-
+name: Build Kernel
 on:
+  watch:
+    types: [started]
+  schedule:
+    - cron: '0 8 * * */6'
   workflow_dispatch:
-
 jobs:
-  Set-repos:
-    name: "🐂 Parse repos.json"
-    runs-on: ubuntu-latest
-    outputs:
-      repos: ${{ steps.generate-matrix.outputs.repos }}
-      builddate: ${{ steps.generate-builddate.outputs.builddate }}
-    steps:
-      - name: "😄 Checkout"
-        uses: actions/checkout@v3
-
-      - name: "⏰ Set builddate"
-        id: generate-builddate
-        run: echo "builddate=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
-        
-    Build-Kernel:
+  build:
          name: "🐎 Build kernel by ${{ github.actor }}"
          runs-on: ubuntu-20.04
          steps:
