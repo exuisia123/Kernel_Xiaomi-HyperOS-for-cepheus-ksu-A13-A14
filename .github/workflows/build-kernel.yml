@@ -1,4 +1,4 @@
-name: "🐂 Build Kernel"
+name: "Build Kernel"
 on:
   watch:
     types: [started]
@@ -28,7 +28,7 @@ jobs:
               echo "MAKE_BOOT_IMAGE=$(cat config.env | grep "MAKE_BOOT_IMAGE" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
               echo "SOURCE_BOOT_IMAGE=$(cat config.env | grep "SOURCE_BOOT_IMAGE" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
 
-          - name: "😆 Setup build kernel environment"
+          - name: "🚄 Setup build kernel environment"
             run: |
               echo "BUILD_TIME=$(TZ=Asia/Shanghai date "+%Y%m%d%H%M")" >> $GITHUB_ENV
               echo "DEVICE=$(echo ${{ env.KERNEL_DEFCONFIG }} | sed 's!vendor/!!;s/_defconfig//;s/_user//;s/-perf//')" >> $GITHUB_ENV
@@ -37,7 +37,7 @@ jobs:
               # sh -c "$(curl -sSL https://github.com/akhilnarang/scripts/raw/master/setup/android_build_env.sh/)"
               mkdir -p $GITHUB_WORKSPACE/kernel_workspace
 
-          - name: "💫 Download Clang-aosp and Gcc-aosp"
+          - name: "🚅 Download Clang-aosp and Gcc-aosp"
             run: |
               cd $GITHUB_WORKSPACE/kernel_workspace
               mkdir clang-aosp
@@ -67,7 +67,7 @@ jobs:
              git clone --depth=2 https://github.com/arter97/exfat-linux $GITHUB_WORKSPACE/kernel_workspace/android-kernel/fs/exfat
              git submodule update --init
           
-          - name: "🎶 Download source boot image"
+          - name: "💫  Download source boot image"
             if: env.MAKE_BOOT_IMAGE == 'true'
             run: |
               cd $GITHUB_WORKSPACE/kernel_workspace
@@ -102,7 +102,7 @@ jobs:
               fi
               echo "UPLOADNAME=KernelSU" >> $GITHUB_ENV
 
-          - name: "🎶 Build kernel"
+          - name: "😎 Build kernel"
             run: |
              cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
                 # export PATH=$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/Toolchain/clang-r383902b/bin:$PATH
