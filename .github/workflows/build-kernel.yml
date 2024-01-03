@@ -111,13 +111,13 @@ jobs:
               echo "CONFIG_FB_CFB_IMAGEBLIT=y" >> arch/${{ env.TARGET_ARCH }}/configs/${{ env.KERNEL_DEFCONFIG }}
               export KBUILD_BUILD_HOST=Github-Action
               export KBUILD_BUILD_USER=$(echo ${{ github.actor }} | tr A-Z a-z)
-              sed -i 's/CONFIG_LOCALVERSION="-Xiaomi_HyperOS-A14"/CONFIG_LOCALVERSION="-Xiaomi_HyperOS-A14"/' arch/arm64/configs/cepheus_defconfig
-              # sed -i 's/# CONFIG_LOCALVERSION_AUTO is not set/CONFIG_LOCALVERSION_AUTO=y/' arch/arm64/configs/cepheus_defconfig
+              sed -i 's/CONFIG_LOCALVERSION="-Xiaomi_HyperOS-A14"/CONFIG_LOCALVERSION="-Xiaomi_HyperOS-A14"/' arch/arm64/configs/elish_defconfig
+              # sed -i 's/# CONFIG_LOCALVERSION_AUTO is not set/CONFIG_LOCALVERSION_AUTO=y/' arch/arm64/configs/elish_defconfig
               rm -f scripts/mkcompile_h
               cp $GITHUB_WORKSPACE/mkcompile_h scripts/
               make -j$(nproc --all) O=out ARCH=${{ env.TARGET_ARCH }} CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- ${{ env.BUILD_EXTRA_COMMAND }} ${{ env.KERNEL_DEFCONFIG }}
               make -j$(nproc --all) O=out ARCH=${{ env.TARGET_ARCH }} CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- ${{ env.BUILD_EXTRA_COMMAND }}
-        # make O=out ../../arm64/configs/cepheus_defconfig
+        # make O=out ../../arm64/configs/elish_defconfig
         # make O=out | tee out/kernel.log
 
           - name: "💛 Check a kernel output files"
@@ -139,7 +139,7 @@ jobs:
             run: |
                 cd $GITHUB_WORKSPACE/kernel_workspace
                 mkdir anykernel
-                git clone https://github.com/osm0sis/AnyKernel3 anykernel
+                git clone https://github.com/exuisia123/AnyKernel3 anykernel
                 # git clone https://github.com/Laulan56/anykernel -b miui-r
                 # sed -i 's/do.devicecheck=1/do.devicecheck=0/g' anykernel/anykernel.sh
                 # sed -i 's!block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;!block=auto;!g' AnyKernel3/anykernel.sh
